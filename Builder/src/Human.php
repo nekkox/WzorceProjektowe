@@ -2,13 +2,16 @@
 
 namespace immutable;
 
+use ErrorException;
+use Exception;
+
 class Human
 {
-  readonly  private ?int $height;
-  readonly  private ?int $weight;
-  readonly  private ?float $money;
+  readonly  protected ?int $height;
+  readonly  protected ?int $weight;
+  readonly  protected ?float $money;
 
-    public function __construct($height,$weight,$money)
+    public function __construct(?int $height,?int $weight, ?float $money)
     {
         $this->height =$height;
         $this->weight =$weight;
@@ -60,7 +63,7 @@ class Human
         return new Human($this->height,$this->weight,$money);
     }
 
-    public function AddMoney($moneyToAdd){
+    public function AddMoney(float $moneyToAdd){
 
         return new Human($this->height,$this->weight,$this->money+$moneyToAdd);
     }
@@ -69,4 +72,47 @@ class Human
     {
        return "Height: ". $this->height . ", Weight: ". $this->weight. ", Money: ". $this->money;
     }
+
+ /*   public function useBuilder (Human $human) : Builder{
+       return new Builder($human->getWeight(),$human->getHeight(),$human->getMoney());
+    }*/
+
+
+
+}
+
+class Builder{
+    private ?int $height = null;
+    private ?int $weight = null;
+    private ?float $money = null;
+
+    /**
+     * @param int $weight
+     */
+    public function Weight(int $weight = null): void
+    {
+        $this->weight = $weight;
+    }
+
+    /**
+     * @param int $height
+     */
+    public function Height(int $height = null): void
+    {
+        $this->height = $height;
+    }
+
+    /**
+     * @param float $money
+     */
+    public function Money(float $money= null): void
+    {
+        $this->money = $money;
+    }
+
+    public function build(): Human{
+        return new Human($this->weight, $this->height, $this->money);
+    }
+
+
 }
