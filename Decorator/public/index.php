@@ -1,10 +1,13 @@
 <?php
-require_once "../src/Bicycle.php";
-require_once "../src/MountainBicycle.php";
-require_once "../src/TownBicycle.php";
-require_once "../src/BicycleDecorator.php";
-require_once "../src/FrontLight.php";
-require_once "../src/BackLight.php";
+
+require __DIR__. '/../../vendor/autoload.php';
+
+//require_once "../src/Bicycle.php";
+//require_once "../src/MountainBicycle.php";
+//require_once "../src/TownBicycle.php";
+//require_once "../src/BicycleDecorator.php";
+//require_once "../src/FrontLight.php";
+//require_once "../src/BackLight.php";
 
 use Bicycle\MountainBicycle;
 use Bicycle\TownBicycle;

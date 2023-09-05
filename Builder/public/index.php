@@ -1,8 +1,21 @@
 <?php
-require_once "../src/Human.php";
+//require '../../bootstrap.php';
+//require '../../vendor/autoload.php';
+//require_once "../app/src/Human.php";App\Immutable\Human
+//require_once "../app/src/Builder.php";
 
-use immutable\Builder;
-use  Immutable\Human as Human;
+spl_autoload_register(function ($class) {
+
+    $class = str_replace('\\', '/', $class);
+    $class = __DIR__.'/../src/'. lcfirst($class).'.php';
+    if (file_exists($class)){
+        require $class;
+    }
+});
+
+use App\Builder;
+use App\Immutable\Human;
+use App\Transaction;
 
 $human = new Human(150,60,1000);
 echo "<br>";
@@ -28,10 +41,15 @@ $human2=$humanBuilder->build();
 var_dump($human2);
 echo $human2;*/
 
-$humanBuilder = new Builder();
-$humanBuilder->Money(5555);
-$humanBuilder->Weight(165);
-$humanBuilder->Height(195);
-$human2=$humanBuilder->build();
-var_dump($human2);
-var_dump($humanBuilder);
+$human = new Builder();
+$human=$human->Weight(53)->Height(156)->Money(2000)->build();
+var_dump($human);
+echo $human;
+echo "<br>";
+
+$transation = new Transaction();
+var_dump(Transaction::STATUS_PAID);
+$transation->setStatus('pddaid');
+var_dump($transation);
+$transation->setStatus('paid');
+var_dump($transation);

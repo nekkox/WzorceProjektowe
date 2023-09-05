@@ -1,6 +1,6 @@
 <?php
 
-namespace immutable;
+namespace App\Immutable;
 
 use ErrorException;
 use Exception;
@@ -81,38 +81,3 @@ class Human
 
 }
 
-class Builder{
-    private ?int $height = null;
-    private ?int $weight = null;
-    private ?float $money = null;
-
-    /**
-     * @param int $weight
-     */
-    public function Weight(int $weight = null): void
-    {
-        $this->weight = $weight;
-    }
-
-    /**
-     * @param int $height
-     */
-    public function Height(int $height = null): void
-    {
-        $this->height = $height;
-    }
-
-    /**
-     * @param float $money
-     */
-    public function Money(float $money= null): void
-    {
-        $this->money = $money;
-    }
-
-    public function build(): Human{
-        return new Human($this->weight, $this->height, $this->money);
-    }
-
-
-}
